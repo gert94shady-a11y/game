@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>Domanda Segreta</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #0f172a;
+        color: #e5e7eb;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .box {
+        background: #020617;
+        padding: 25px;
+        border-radius: 12px;
+        width: 320px;
+        text-align: center;
+        box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    }
+    input {
+        width: 90%;
+        padding: 10px;
+        margin-top: 10px;
+        border-radius: 6px;
+        border: none;
+    }
+    button {
+        margin-top: 15px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        background: #22c55e;
+        color: black;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    #result {
+        margin-top: 20px;
+        font-size: 18px;
+        min-height: 30px;
+        color: #38bdf8;
+    }
+</style>
+</head>
+
+<body>
+<div class="box">
+    <h2>Domanda</h2>
+    <p>Quanto fa 7 + 5?</p>
+
+    <input type="text" id="answer" placeholder="Scrivi la risposta">
+    <button onclick="checkAnswer()">Invia</button>
+
+    <div id="result"></div>
+</div>
+
+<script>
+const rispostaCorretta = "12";
+const testoFinale = "Risposta corretta! Sei davvero attento 😉";
+
+function checkAnswer() {
+    const input = document.getElementById("answer").value.trim();
+    const result = document.getElementById("result");
+    result.textContent = "";
+
+    if (input === rispostaCorretta) {
+        scriviLettere(testoFinale, result);
+    } else {
+        result.textContent = "Risposta sbagliata 😅 riprova";
+    }
+}
+
+function scriviLettere(testo, elemento) {
+    let i = 0;
+    const intervallo = setInterval(() => {
+        elemento.textContent += testo[i];
+        i++;
+        if (i === testo.length) {
+            clearInterval(intervallo);
+        }
+    }, 70); // velocità lettere (ms)
+}
+</script>
+
+</body>
+</html>
